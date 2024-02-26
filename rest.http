@@ -1,0 +1,43 @@
+//create user
+POST http://localhost:3001/user/
+Content-Type: application/json
+
+{
+     "firstName": "Jane",
+     "lastName": "Doe",
+     "age": 30
+}
+
+###  //get users
+GET http://localhost:3001/user/    
+
+### //edit users
+PUT http://localhost:3001/user/id
+Content-Type: application/json
+
+{
+     "age": 25
+}
+
+### //delete user
+DELETE http://localhost:3001/id
+
+### //create house
+POST http://localhost:3001/house
+Content-Type: application/json
+
+{
+     "address": "123 Main St",
+     "wifiPassword": "password123",
+     "ownerId": "d149a2c8-45a4-4154-ad8c-aeebfd778029",
+     "builderId": "d149a2c8-45a4-4154-ad8c-aeebfd778029"
+}
+
+### //get house
+GET http://localhost:3001/house
+
+### //get specific house
+GET http://localhost:3001/house/bb33bd96-32d9-4442-8b63-dc3f003a36aa
+
+### //get filteres houses
+GET http://localhost:3001/house/filter

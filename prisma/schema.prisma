@@ -1,0 +1,38 @@
+// define which db we are using
+// define how our db is formatted
+// write db tables
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+//db connection
+datasource db {
+    provider = "mysql"
+    url      = env("DATABASE_URL")
+}
+
+//user model
+model User {
+    id         String   @id @default(uuid())
+    firstName  String
+    lastName   String
+    age        Int
+    createdAt  DateTime @default(now())
+    updatedAt  DateTime @updatedAt
+    houseOwned House[]  @relation("houseOwner")
+    houseBuild House[]  @relation("houseBuilder")
+}
+
+//house model
+model House {
+    id           String   @id @default(uuid())
+    address      String   @unique
+    wifiPassword String?
+    owner        User     @relation("houseOwner", fields: [ownerId], references: [id])
+    ownerId      String
+    builder      User     @relation("houseBuilder", fields: [builderId], references: [id])
+    builderId    String
+    createdAt    DateTime @default(now())
+    updatedAt    DateTime @updatedAt
+}
